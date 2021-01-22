@@ -5,6 +5,8 @@ local inv = kap.inventory();
 // The hiera parameters for the component
 local params = inv.parameters.ingress_nginx;
 
+
 // Define outputs below
 {
+
 }

@@ -1,5 +1,11 @@
 parameters:
   kapitan:
+    dependencies:
+      - type: helm
+        output_path: dependencies/ingress-nginx/helmcharts/ingress-nginx
+        source: https://kubernetes.github.io/ingress-nginx
+        version: ${ingress_nginx:charts:ingress-nginx}
+        chart_name: ingress-nginx
     compile:
       - input_paths:
           - ingress-nginx/component/app.jsonnet
@@ -9,4 +15,11 @@ parameters:
           - ingress-nginx/component/main.jsonnet
         input_type: jsonnet
         output_path: ingress-nginx/
-
+      - input_type: helm
+        output_path: ingress-nginx/10_ingress_nginx_helmchart
+        input_paths:
+          - ingress-nginx/helmcharts/ingress-nginx
+        helm_values: ${ingress_nginx:helm_values}
+        helm_params:
+          release_name: ${ingress_nginx:release_name}
+          namespace: ${ingress_nginx:namespace}

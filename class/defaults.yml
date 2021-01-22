@@ -1,3 +1,43 @@
 parameters:
   ingress_nginx:
     namespace: syn-ingress-nginx
+    release_name: ingress-nginx
+    charts:
+      ingress-nginx: '3.21.0'
+    helm_values:
+      controller:
+        config:
+          proxy-body-size: 1024m
+          proxy-buffer-size: 64k
+          log-format-upstream: >-
+            {
+            "time": "$time_iso8601",
+            "remote_addr": "$proxy_protocol_addr",
+            "x-forward-for": "$proxy_add_x_forwarded_for",
+            "req_id": "$req_id",
+            "remote_user": "$remote_user",
+            "bytes_sent": $bytes_sent,
+            "request_time": $request_time,
+            "status": "$status",
+            "host": "$host",
+            "request_proto": "$server_protocol",
+            "request_uri": "$uri",
+            "request_query": "$args",
+            "request_length": $request_length,
+            "request_time": $request_time,
+            "request_method": "$request_method",
+            "http_referer": "$http_referer",
+            "http_user_agent": "$http_user_agent",
+            "namespace": "$namespace",
+            "ingress_name": "$ingress_name",
+            "service_name": "$service_name",
+            "service_port": "$service_port"
+            }
+        publishService:
+          enabled: true
+          pathOverride: "syn-ingress-nginx/ingress-nginx-controller"
+        replicaCount: 2
+        metrics:
+          enabled: true
+          serviceMonitor:
+            enabled: true
