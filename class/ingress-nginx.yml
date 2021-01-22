@@ -1,0 +1,12 @@
+parameters:
+  kapitan:
+    compile:
+      - input_paths:
+          - ingress-nginx/component/app.jsonnet
+        input_type: jsonnet
+        output_path: apps/
+      - input_paths:
+          - ingress-nginx/component/main.jsonnet
+        input_type: jsonnet
+        output_path: ingress-nginx/
+

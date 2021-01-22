@@ -1,0 +1,6 @@
+name: ingress-nginx
+title: ingress-nginx
+version: master
+start_page: ROOT:index.adoc
+nav:
+  - modules/ROOT/partials/nav.adoc

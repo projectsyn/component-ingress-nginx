@@ -1,0 +1,3 @@
+parameters:
+  ingress_nginx:
+    namespace: syn-ingress-nginx
