@@ -1,6 +1,6 @@
 # Commodore Component: ingress-nginx
 
-This is a [Commodore][commodore] Component for ingress-nginx.
+This is a [Commodore][commodore] Component for the NGINX Ingress Controller.
 
 This repository is part of Project Syn.
 For documentation on Project Syn and this component, see https://syn.tools.
