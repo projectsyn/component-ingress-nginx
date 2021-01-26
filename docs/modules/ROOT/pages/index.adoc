@@ -1,5 +1,23 @@
-= ingress-nginx
+= ingress-nginx: A Commodore component to manage the NGINX Ingress Controller
 
 ingress-nginx is a Commodore component to manage ingress-nginx.
+The component is based on the official https://github.com/kubernetes/ingress-nginx/tree/master/charts/ingress-nginx[Helm Chart].
+
+Check the https://kubernetes.github.io/ingress-nginx/[official documentation] for further information.
 
 See the xref:references/parameters.adoc[parameters] reference for further details.
+
+== Add a default ingress TLS certificate
+
+By default the NGINX Ingress Controller does create a fake certificate provided to clients connecting via HTTPS.
+A specific TLS certificate can be provided on each ingress or a default certificate can be added provided, when no ingress specific certificate is available.
+
+[source,yaml]
+----
+parameters:
+  ingress_nginx:
+    helm_values:
+      controller:
+        extraArgs:
+          default-ssl-certificate: "syn-ingress-nginx/default-ingress-tls"
+----
