@@ -31,7 +31,7 @@ default:: `3.21.0`
 == `helm_values`
 
 [horizontal]
-type:: yaml
+type:: dict
 
 
 All helm_values are passed to the helm chart.
