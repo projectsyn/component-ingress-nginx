@@ -15,6 +15,7 @@ parameters:
           - ingress-nginx/component/main.jsonnet
         input_type: jsonnet
         output_path: ingress-nginx/
+
       - input_type: helm
         output_path: ingress-nginx/10_ingress_nginx_helmchart
         input_paths:
