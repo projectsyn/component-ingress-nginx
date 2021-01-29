@@ -1,7 +1,0 @@
-filters:
-  - path: ingress-nginx/10_ingress_nginx_helmchart/ingress-nginx/templates
-    type: builtin
-    filter: helm_namespace
-    filterargs:
-      namespace: ${ingress_nginx:namespace}
-      create_namespace: "true"
