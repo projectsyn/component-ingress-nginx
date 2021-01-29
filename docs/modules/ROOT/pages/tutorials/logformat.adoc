@@ -1,6 +1,6 @@
-== NGINX log format as JSON
+== NGINX upstream log format as JSON
 
-The default upstream log format is defined as JSON in a example:
+By default the upstream log is defined as a regular human readable string. To switch to a JSON based format you might use this example:
 
 [source,yaml]
 ----
