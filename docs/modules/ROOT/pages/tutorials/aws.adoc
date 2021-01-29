@@ -11,7 +11,7 @@ NLB provides a failure tollerant network package forwaring on layer 4.
 
 === NLB - Network Load Balancer
 
-Kubernetes provides the ability to create the NLB directly out of the cluster by defining a service object of type LoadBalancer with the special annotation: 
+Kubernetes provides the ability to create the NLB directly out of the cluster by defining a service object of type LoadBalancer with the special annotation:
 
 [source,yaml]
 ----
