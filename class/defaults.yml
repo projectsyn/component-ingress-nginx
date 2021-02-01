@@ -6,9 +6,6 @@ parameters:
       ingress-nginx: '3.22.0'
     helm_values:
       controller:
-        config:
-          proxy-body-size: 1024m
-          proxy-buffer-size: 64k
         publishService:
           enabled: true
           pathOverride: "syn-ingress-nginx/ingress-nginx-controller"
