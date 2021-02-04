@@ -1,0 +1,48 @@
+== AWS - Amazon Web Services Load Balancers
+
+There are several possibilities to setup external access into the EKS cluster on AWS.
+AWS provides three load balancer types.
+[ELB Elastic Load Balancing - Version 1](https://docs.aws.amazon.com/elasticloadbalancing/index.html), also known as classic load balancer, is outdated and should not be used for new deployments.
+The version 2 types [NLB - Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html) and [ALB - Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html) are usually used.
+
+The ALB is able to interact with the traffic on layer 7.
+This allows several additional features like log the traffic or integrate a AWS WAF.
+NLB provides a failure tollerant network package forwarding on layer 4.
+
+=== NLB - Network Load Balancer
+
+Kubernetes provides the ability to create the NLB directly out of the cluster by defining a service object of type LoadBalancer with the special annotation:
+
+[source,yaml]
+----
+parameters:
+  ingress_nginx:
+    helm_values:
+      service:
+        annotations:
+          service.beta.kubernetes.io/aws-load-balancer-type: 'nlb'
+        externalTrafficPolicy: Local
+----
+
+=== ALB - Application Load Balancer
+
+While it is technially possible to create the ALB out of the cluster, deploying the ALB with a different method like Terraform, gives full access to all capabilities an ALB can provide.
+In the case the ALB is not created out of the cluster, we just configure the nodePorts for HTTP and HTTPs passing the traffic to the NGINX Ingress Controllers.
+
+Using `externalTrafficPolicy: Local` ensures that only NGINX Ingress Controller pods on the same node are used.
+If a ingress pod on a specific node doesn't answer, the ALB health check will detect this and will take out this path.
+On the other hand this prevents an additional hop to an ingress pod on a different node, which would lower the throughput.
+Check the blog [A Deep Dive into Kubernetes External Traffic Policies](https://www.asykim.com/blog/deep-dive-into-kubernetes-external-traffic-policies) for more details.
+
+[source,yaml]
+----
+parameters:
+  ingress_nginx:
+    helm_values:
+        service:
+          type: NodePort
+          externalTrafficPolicy: Local
+          nodePorts:
+            http: 32080
+            https: 32443
+----

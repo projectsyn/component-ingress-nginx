@@ -11,9 +11,38 @@ default:: `syn-ingress-nginx`
 The namespace in which to deploy this component.
 
 
-== Example
+== `release_name`
+
+[horizontal]
+type:: string
+default:: `ingress-nginx`
+
+The name ingress-nginx is deployed.
+Usually there is just one deployment and therefore no change is required.
+
+
+== `charts.ingress-nginx`
+
+[horizontal]
+type:: string
+default:: `3.21.0`
+
+
+== `helm_values`
+
+[horizontal]
+type:: dict
+
+
+All helm_values are passed to the helm chart.
+This allows to configure all https://github.com/kubernetes/ingress-nginx/blob/master/charts/ingress-nginx/values.yaml[ingress-nginx helm chart values].
 
 [source,yaml]
 ----
-namespace: example-namespace
+parameters:
+  ingress_nginx:
+    helm_values:
+      controller:
+        config:
+          hsts: 'false'
 ----

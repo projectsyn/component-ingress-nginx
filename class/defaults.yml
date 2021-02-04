@@ -1,3 +1,16 @@
 parameters:
   ingress_nginx:
     namespace: syn-ingress-nginx
+    release_name: ingress-nginx
+    charts:
+      ingress-nginx: '3.22.0'
+    helm_values:
+      controller:
+        publishService:
+          enabled: true
+          pathOverride: "syn-ingress-nginx/ingress-nginx-controller"
+        replicaCount: 2
+        metrics:
+          enabled: true
+          serviceMonitor:
+            enabled: true
