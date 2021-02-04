@@ -6,8 +6,8 @@ AWS provides three load balancer types.
 The version 2 types [NLB - Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html) and [ALB - Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html) are usually used.
 
 The ALB is able to interact with the traffic on layer 7.
-This allows seceral additional features like log the traffic or integrate a AWS WAF.
-NLB provides a failure tollerant network package forwaring on layer 4.
+This allows several additional features like log the traffic or integrate a AWS WAF.
+NLB provides a failure tollerant network package forwarding on layer 4.
 
 === NLB - Network Load Balancer
 
