@@ -5,6 +5,11 @@ The component is based on the official https://github.com/kubernetes/ingress-ngi
 
 Check the https://kubernetes.github.io/ingress-nginx/[official documentation] for further information.
 
+[CAUTION]
+====
+This component requires at least ArgoCD 1.8. Check the https://github.com/argoproj/argo-cd/issues/2737[issue].
+====
+
 See the xref:references/parameters.adoc[parameters] reference for further details.
 
 == Add a default ingress TLS certificate
