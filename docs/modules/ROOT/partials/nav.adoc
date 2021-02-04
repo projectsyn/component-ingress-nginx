@@ -1,4 +1,4 @@
 * xref:index.adoc[Home]
+* xref:how-tos/aws.adoc[AWS - Amazon Web Services Load Balancers]
+* xref:how-tos/logformat.adoc[NGINX upstream log format as JSON]
 * xref:references/parameters.adoc[Parameters]
-* xref:tutorials/aws.adoc[AWS - Amazon Web Services Load Balancers]
-* xref:tutorials/logformat.adoc[NGINX upstream log format as JSON]
