@@ -2,7 +2,7 @@
 
 There are several possibilities to setup external access into the EKS cluster on AWS.
 AWS provides three load balancer types.
-[ELB Elastic Load Balancing - Version 1](https://docs.aws.amazon.com/elasticloadbalancing/index.html), also known as classic load balancer, is outdated and should not be used for new deployments.
+[ELB Elastic Load Balancing - Version 1](https://docs.aws.amazon.com/elasticloadbalancing/index.html), also known as classic load balancer, is outdated and shouldn't be used for new deployments.
 The version 2 types [NLB - Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html) and [ALB - Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html) are usually used.
 
 The ALB is able to interact with the traffic on layer 7.
@@ -26,8 +26,8 @@ parameters:
 
 === ALB - Application Load Balancer
 
-While it is technially possible to create the ALB out of the cluster, deploying the ALB with a different method like Terraform, gives full access to all capabilities an ALB can provide.
-In the case the ALB is not created out of the cluster, we just configure the nodePorts for HTTP and HTTPs passing the traffic to the NGINX Ingress Controllers.
+While it's technially possible to create the ALB out of the cluster, deploying the ALB with a different method like Terraform, gives full access to all capabilities an ALB can provide.
+In the case the ALB isn't created out of the cluster, we just configure the nodePorts for HTTP and HTTPs passing the traffic to the NGINX Ingress Controllers.
 
 Using `externalTrafficPolicy: Local` ensures that only NGINX Ingress Controller pods on the same node are used.
 If a ingress pod on a specific node doesn't answer, the ALB health check will detect this and will take out this path.

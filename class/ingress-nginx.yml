@@ -2,7 +2,7 @@ parameters:
   kapitan:
     dependencies:
       - type: helm
-        output_path: dependencies/ingress-nginx/helmcharts/ingress-nginx
+        output_path: dependencies/ingress-nginx/helmcharts/ingress-nginx/${ingress_nginx:charts:ingress-nginx}/
         source: https://kubernetes.github.io/ingress-nginx
         version: ${ingress_nginx:charts:ingress-nginx}
         chart_name: ingress-nginx
@@ -19,7 +19,7 @@ parameters:
       - input_type: helm
         output_path: ingress-nginx/10_ingress_nginx_helmchart
         input_paths:
-          - ingress-nginx/helmcharts/ingress-nginx
+          - ingress-nginx/helmcharts/ingress-nginx/${ingress_nginx:charts:ingress-nginx}/
         helm_values: ${ingress_nginx:helm_values}
         helm_params:
           release_name: ${ingress_nginx:release_name}
