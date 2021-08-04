@@ -10,6 +10,11 @@ Check the https://kubernetes.github.io/ingress-nginx/[official documentation] fo
 This component requires at least ArgoCD 1.8. Check the https://github.com/argoproj/argo-cd/issues/2737[issue].
 ====
 
+[CAUTION]
+====
+This component requires a minimum Kubernetes version of 1.19.
+====
+
 See the xref:references/parameters.adoc[parameters] reference for further details.
 
 == Add a default ingress TLS certificate
