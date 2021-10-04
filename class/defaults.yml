@@ -3,7 +3,7 @@ parameters:
     namespace: syn-ingress-nginx
     release_name: ingress-nginx
     charts:
-      ingress-nginx: '4.0.3'
+      ingress-nginx: '3.38.0'
     helm_values:
       controller:
         publishService:
@@ -14,6 +14,3 @@ parameters:
           enabled: true
           serviceMonitor:
             enabled: true
-        ingressClassResource:
-          enabled: true
-          default: true
