@@ -25,7 +25,7 @@ Usually there is just one deployment and therefore no change is required.
 
 [horizontal]
 type:: string
-default:: `3.35.0`
+default:: `4.0.3`
 
 
 == `helm_values`
