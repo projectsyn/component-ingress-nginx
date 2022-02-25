@@ -1,0 +1,123 @@
+= Upgrade from 1.x to 2.x
+
+This guide describes the steps to perform an upgrade of the component from version 1.x to 2.x.
+
+[WARNING]
+====
+Version 2.x does use Ingress NGINX Controller >1.0.
+
+Before upgrading to version 2.x, please ensure that your Kubernetes cluster is running the version https://github.com/kubernetes/ingress-nginx#support-versions-table[1.19 or later].
+====
+
+====
+Requirements
+
+* `commodore`
+* `kubectl`
+* `shell`
+====
+
+== Introduction
+
+The component version 1.x did use Ingress NGINX Controller v0.x and component version 2.x is now using Ingress NGINX Controller v1.x.
+
+The Ingress NGINX Controller v1.x now requires the use of a `IngressClass`.
+
+With the upgrade the component is automatically deploying an `IngressClass` called `nginx` for the controller:
+
+[source,yaml]
+----
+---
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+  name: nginx
+spec:
+  controller: k8s.io/ingress-nginx
+----
+
+== Step-by-step guide
+
+. If the Ingress NGINX Controller should be the default IngressController, please add this to the configuration:
++
+[source,yaml]
+----
+parameters:
+  ingress_nginx:
+    helm_values:
+      controller:
+        ingressClassResource:
+          default: true
+----
++
+. If not all Ingress resources have a configured `.spec.ingressClassName` configured, please set `watchIngressWithoutClass: true` to still watch for such objects:
++
+[source,yaml]
+----
+parameters:
+  ingress_nginx:
+    helm_values:
+      controller:
+        watchIngressWithoutClass: true
+----
+
+== Post upgrade
+
+Since NGINX Controller v1.0 the `.spec.ingressClassName` field should be set in the https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource[Ingress resource].
+If the `.spec.ingressClassName` is omitted, a default Ingress class should be defined.
+If no customisation is done, the `IngressClass` is named `nginx`.
+
+ArgoCD does ignore `.spec.ingressClassName` if not set in the original manifest.
+
+For more information read the NGINX Ingress Controller documentation on the topic https://kubernetes.github.io/ingress-nginx/#i-have-only-one-ingress-controller-in-my-cluster-what-should-i-do[I have only one ingress controller in my cluster. What should I do?].
+
+Existing Ingress objects don't get the default IngressClass.
+They need to be recreated or patched.
+
+Patch one Ingress resource:
+[source,bash]
+----
+kubectl patch ingress <ingressname> --patch '{"spec": {"ingressClassName": "nginx"}}' --namespace <namespace>
+----
+
+Patch all Ingress resources on a cluster (BE CAREFULLY WITH IT, IF YOU HAVE MULTIPLE INGRESS CONTROLLERS!):
+
+. Show all Ingress resources who will be patched:
++
+[source,bash]
+----
+for ns in $(kubectl get ns -o jsonpath={.items[*].metadata.name}); do \
+  for ing in $(kubectl get ingress -n $ns -o jsonpath={.items[*].metadata.name}); do \
+    echo $ns/$ing; \
+  done; \
+done
+----
++
+. Patch all Ingress resouces on a cluster:
++
+[source,bash]
+----
+for ns in $(kubectl get ns -o jsonpath={.items[*].metadata.name}); do \
+  for ing in $(kubectl get ingress -n $ns -o jsonpath={.items[*].metadata.name}); do \
+    echo Patching ingress $ns/$ing; \
+    kubectl patch ingress $ing -n $ns --patch '{"spec": {"ingressClassName": "nginx"}}'; \
+  done; \
+done
+----
+
+[NOTE]
+====
+Any `kubernetes.io/ingress.class` annotation on Ingress resources can be removed. See the https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation[Kubernetes documentation].
+====
+
+Check which Ingress resources do have a defined IngressClass:
+[source,bash]
+----
+$ kubectl get ing -A
+NAMESPACE               NAME                        CLASS   HOSTS
+ingress1                ingress1                    nginx   host.example.com
+----
+
+Once all Ingress resouces have been patched for `ingressClassName` the parameter `.controller.watchIngressWithoutClass: true` will no longer be required and can be removed from the configuration.
