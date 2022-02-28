@@ -1,6 +1,6 @@
 == Cluster Default IngressClass
 
-The Ingress NGINX Controller v1.x requires the use of a `IngressClass`.
+The Ingress NGINX Controller v1.x requires the use of an `IngressClass`.
 
 With the upgrade the component is automatically deploying an `IngressClass` called `nginx` for the controller:
 

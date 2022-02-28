@@ -21,7 +21,7 @@ Requirements
 
 The component version 1.x did use Ingress NGINX Controller v0.x and component version 2.x is now using Ingress NGINX Controller v1.x.
 
-The Ingress NGINX Controller v1.x now requires the use of a `IngressClass`.
+The Ingress NGINX Controller v1.x now requires the use of an `IngressClass`.
 
 With the upgrade the component is automatically deploying an `IngressClass` called `nginx` for the controller:
 
@@ -52,7 +52,7 @@ parameters:
           default: true
 ----
 +
-. If not all Ingress resources have a configured `.spec.ingressClassName` configured, please set `watchIngressWithoutClass: true` to still watch for such objects:
+. If not all Ingress resources have a `.spec.ingressClassName` configured, you must set `watchIngressWithoutClass: true` to still watch for such objects:
 +
 [source,yaml]
 ----
@@ -82,9 +82,9 @@ Patch one Ingress resource:
 kubectl patch ingress <ingressname> --patch '{"spec": {"ingressClassName": "nginx"}}' --namespace <namespace>
 ----
 
-Patch all Ingress resources on a cluster (BE CAREFULLY WITH IT, IF YOU HAVE MULTIPLE INGRESS CONTROLLERS!):
+Patch all Ingress resources on a cluster (BE CAREFUL WITH IT, IF YOU HAVE MULTIPLE INGRESS CONTROLLERS!):
 
-. Show all Ingress resources who will be patched:
+. Show all Ingress resources that will be patched:
 +
 [source,bash]
 ----
