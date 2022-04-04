@@ -22,5 +22,5 @@ parameters:
           - ingress-nginx/helmcharts/ingress-nginx/${ingress_nginx:charts:ingress-nginx}/
         helm_values: ${ingress_nginx:helm_values}
         helm_params:
-          release_name: ${ingress_nginx:release_name}
+          name: ${ingress_nginx:release_name}
           namespace: ${ingress_nginx:namespace}
