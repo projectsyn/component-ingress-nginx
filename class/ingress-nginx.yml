@@ -24,3 +24,4 @@ parameters:
         helm_params:
           name: ${ingress_nginx:release_name}
           namespace: ${ingress_nginx:namespace}
+          kube_version: ${ingress_nginx:kubernetes_version}
