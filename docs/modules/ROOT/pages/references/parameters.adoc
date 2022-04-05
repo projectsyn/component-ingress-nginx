@@ -20,6 +20,13 @@ default:: `ingress-nginx`
 The name ingress-nginx is deployed.
 Usually there is just one deployment and therefore no change is required.
 
+== `kubernetes_version`
+
+[horizontal]
+type:: string
+default:: `null`
+
+The kubernetes version to be used.
 
 == `charts.ingress-nginx`
 
