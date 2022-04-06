@@ -1,0 +1,27 @@
+= Upgrade from 2.x to 3.x
+
+This guide describes the steps to perform an upgrade of the component from version 2.x to 3.x.
+
+== Introduction
+
+The component version 3.x uses a new parameter `kubernetes_version`, which has to be set to kubernetes version of the control plane that's used on the cluster.
+Setting this variable, ensures that the helm chart is rendered for the correct kubernetes version.
+
+
+
+
+== Step-by-step guide
+
+. Before upgrading to the latest version, ensure that you have set the `kubernetes_version` parameter in your inventory as follows:
+
++
+[source,yaml]
+----
+parameters:
+  ingress_nginx:
+    kubernetes_version: '1.20'
+----
++
+
+[WARNING]
+Setting this variable, might cause a few changes, because the helm chart was rendered for a wrong kubernetes version before (especially true for cluster <= 1.20)
