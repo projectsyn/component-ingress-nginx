@@ -1,6 +1,7 @@
 :global:
   componentName: ingress-nginx
   githubUrl: https://github.com/projectsyn/component-ingress-nginx
+  feature_goldenTests: true
 
 docs/antora.yml:
   name: ingress-nginx
