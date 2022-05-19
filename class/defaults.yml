@@ -3,7 +3,7 @@ parameters:
     namespace: syn-ingress-nginx
     release_name: ingress-nginx
     charts:
-      ingress-nginx: '4.0.19'
+      ingress-nginx: '4.1.1'
     helm_values:
       controller:
         publishService:
