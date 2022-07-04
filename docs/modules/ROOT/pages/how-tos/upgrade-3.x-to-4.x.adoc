@@ -1,0 +1,21 @@
+= Upgrade from 3.x to 4.x
+
+This guide describes the steps to perform an upgrade of the component from version 3.x to 4.x.
+
+== Introduction
+
+The component version 4.x uses the image registry source of `registry.k8s.io` instead of `k8s.gcr.io`.
+There are no other changes.
+
+== Step-by-step guide
+
+If you have restricted the external cluster communication, please change and verify the ability to pull from `registry.k8s.io`.
+Allowance on `k8s.gcr.io` can be removed depending on other components pulling from there.
+
+== Why
+
+`k8s.gcr.io` is deprecated in favor of `registry.k8s.io`:
+
+* https://groups.google.com/a/kubernetes.io/g/dev/c/DYZYNQ_A6_c?pli=1[Please drive traffic to registry.k8s.io (instead of k8s.gcr.io)]
+* https://github.com/kubernetes/enhancements/tree/master/keps/sig-release/3000-artifact-distribution[KEP 3000: Image Promotion and Distribution Policy]
+* https://github.com/kubernetes/kubernetes/pull/109938[Move from k8s.gcr.io to registry.k8s.io #109938]
