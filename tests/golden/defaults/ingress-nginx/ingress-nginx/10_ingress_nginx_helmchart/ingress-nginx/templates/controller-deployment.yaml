@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/version: 1.3.0
-    helm.sh/chart: ingress-nginx-4.2.1
+    helm.sh/chart: ingress-nginx-4.2.3
   name: ingress-nginx-controller
   namespace: syn-ingress-nginx
 spec:
@@ -75,7 +75,7 @@ spec:
               name: https
               protocol: TCP
             - containerPort: 10254
-              name: metrics
+              name: http-metrics
               protocol: TCP
             - containerPort: 8443
               name: webhook
