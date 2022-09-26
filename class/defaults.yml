@@ -4,8 +4,11 @@ parameters:
     release_name: ingress-nginx
     charts:
       ingress-nginx: '4.2.3'
+    chroot: false
     helm_values:
       controller:
+        image:
+          chroot: ${ingress_nginx:chroot}
         publishService:
           enabled: true
           pathOverride: "syn-ingress-nginx/ingress-nginx-controller"

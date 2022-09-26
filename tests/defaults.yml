@@ -1,3 +1,4 @@
 parameters:
   ingress_nginx:
     kubernetes_version: "1.21"
+    chroot: true
