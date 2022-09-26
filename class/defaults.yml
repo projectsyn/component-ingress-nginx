@@ -6,7 +6,7 @@ parameters:
       ingress-nginx: '4.2.3'
     chroot: false
     pod_security_admission:
-      enabled: true
+      enabled: false
       enforce: privileged
       audit: privileged
       warn: privileged

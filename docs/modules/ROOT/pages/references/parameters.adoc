@@ -47,7 +47,7 @@ default::
 [source,yaml]
 ----
 pod_security_admission:
-  enabled: true <1>
+  enabled: false <1>
   enforce: privileged <2>
   audit: privileged <3>
   warn: privileged <4>
@@ -58,8 +58,8 @@ pod_security_admission:
 <4> Which Pod Security Standard to warn on in the created namespace
 
 The Pod Security Admission configuration.
-Pod Security Admission can be enabled or disabled and the standard  to use for enforce, warn, and audit can be configured.
 
+Pod Security Admission can be enabled or disabled and the standard to use for enforce, warn, and audit can be configured.
 You can remove any of the labels by setting the respective field to an empty string or `null`.
 
 Please consult the https://kubernetes.io/docs/concepts/security/pod-security-admission/[upstream documentation].

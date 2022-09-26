@@ -3,6 +3,7 @@ parameters:
     kubernetes_version: "1.21"
     chroot: true
     pod_security_admission:
+      enabled: true
       enforce: privileged
       audit: ''
       warn: null
