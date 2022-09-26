@@ -2,3 +2,7 @@ parameters:
   ingress_nginx:
     kubernetes_version: "1.21"
     chroot: true
+    pod_security_admission:
+      enforce: privileged
+      audit: ''
+      warn: null
