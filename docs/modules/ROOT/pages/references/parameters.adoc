@@ -28,6 +28,15 @@ default:: `null`
 
 The kubernetes version to be used.
 
+== `chroot`
+
+[horizontal]
+type:: boolean
+default:: `false`
+
+Whether to enable the chrooted web proxy server.
+Please see the xref:how-tos/enable-chroot.adoc[chroot how-to].
+
 == `charts.ingress-nginx`
 
 [horizontal]
