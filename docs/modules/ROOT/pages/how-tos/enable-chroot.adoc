@@ -1,0 +1,31 @@
+= Enable chrooted NGINX process
+
+== Overview
+
+Ingress NGINX v1.2.0 introduces the option to essentially isolate the web proxy server as a container inside the controller container.
+This prevents that miss-configuration of the NGINX proxy server can expose the ingress controller.
+
+For a more detailed explanation of what this does and why it increases the security of the ingress controller, you can read the https://kubernetes.io/blog/2022/04/28/ingress-nginx-1-2-0/[official blog post].
+
+== Steps
+
+[IMPORTANT]
+====
+Enabling the chrooted web proxy server adds the capability `SYS_CHROOT`.
+If you want to enable this feature on a cluster with restrictive security policies, please make sure that the NGINX deployment has permission to use the `SYS_CHROOT` capability **before** you do so.
+====
+
+The chroot feature can be enabled by setting the corresponding `chroot` parameter in the hierarchy.
+
+[source,yaml]
+----
+parameters:
+  ingress_nginx:
+    chroot: true
+----
+
+[NOTE]
+====
+This change will restart all NGINX controllers.
+This might lead to dropped connections and downtime of a few seconds.
+====
