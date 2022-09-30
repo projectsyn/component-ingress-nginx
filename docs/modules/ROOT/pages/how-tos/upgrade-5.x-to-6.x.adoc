@@ -1,0 +1,15 @@
+= Upgrade from 5.x to 6.x
+
+This guide describes the steps to perform an upgrade of the component from version 5.x to 6.x.
+
+== Introduction
+
+This release is safe transition version changing the leader elections from configmaps to the Lease API.
+
+The Ingress NGINX Controller applied in the component version 5 can automatically complete the merging of election locks, and then you can safely upgrade to the component version 6.
+
+See the https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.3.1[release notes of Ingress NGINX Controller v1.3.1] for more information.
+
+== Step-by-step guide
+
+Upgrade first to the major version 5 before upgrading to 6.
