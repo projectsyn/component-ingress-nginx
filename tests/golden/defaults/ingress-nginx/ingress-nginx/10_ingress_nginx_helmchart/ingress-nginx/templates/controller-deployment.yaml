@@ -49,7 +49,7 @@ spec:
                   fieldPath: metadata.namespace
             - name: LD_PRELOAD
               value: /usr/local/lib/libmimalloc.so
-          image: registry.k8s.io/ingress-nginx/controller:v1.3.1@sha256:54f7fe2c6c5a9db9a0ebf1131797109bb7a4d91f56b9b362bde2abd237dd1974
+          image: registry.k8s.io/ingress-nginx/controller-chroot:v1.3.1@sha256:a8466b19c621bd550b1645e27a004a5cc85009c858a9ab19490216735ac432b1
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -99,6 +99,7 @@ spec:
             capabilities:
               add:
                 - NET_BIND_SERVICE
+                - SYS_CHROOT
               drop:
                 - ALL
             runAsUser: 101

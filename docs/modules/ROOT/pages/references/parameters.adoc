@@ -28,6 +28,46 @@ default:: `null`
 
 The kubernetes version to be used.
 
+== `chroot`
+
+[horizontal]
+type:: boolean
+default:: `false`
+
+Whether to enable the chrooted web proxy server.
+Please see the xref:how-tos/enable-chroot.adoc[chroot how-to].
+
+
+== `pod_security_admission`
+
+[horizontal]
+type:: dict
+default::
+
+[source,yaml]
+----
+pod_security_admission:
+  enabled: false <1>
+  enforce: privileged <2>
+  audit: privileged <3>
+  warn: privileged <4>
+----
+<1> Whether to set any Pod Security Admission labels
+<2> Which Pod Security Standard to enforce in the created namespace
+<3> Which Pod Security Standard to audit in the created namespace
+<4> Which Pod Security Standard to warn on in the created namespace
+
+The Pod Security Admission configuration.
+
+Pod Security Admission can be enabled or disabled and the standard to use for enforce, warn, and audit can be configured.
+You can remove any of the labels by setting the respective field to an empty string or `null`.
+
+Please consult the https://kubernetes.io/docs/concepts/security/pod-security-admission/[upstream documentation].
+
+NOTE: We default to enforce the `privileged` standard.
+As of writing this the helm chart sets `allowPrivilegeEscalation: true`, which is only allowed for privileged workloads.
+However, this is most likely not needed and if the upstream chart changes this default should be reevaluated.
+
 == `charts.ingress-nginx`
 
 [horizontal]
