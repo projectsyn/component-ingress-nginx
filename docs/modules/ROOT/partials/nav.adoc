@@ -6,6 +6,7 @@
 * xref:how-tos/upgrade-3.x-to-4.x.adoc[Upgrade 3.x to 4.x]
 * xref:how-tos/upgrade-4.x-to-5.x.adoc[Upgrade 4.x to 5.x]
 * xref:how-tos/upgrade-5.x-to-6.x.adoc[Upgrade 5.x to 6.x]
+* xref:how-tos/upgrade-6.x-to-7.x.adoc[Upgrade 6.x to 7.x]
 * xref:cluster-default-ingress-class.adoc[Cluster Default IngressClass]
 * xref:how-tos/aws.adoc[AWS - Amazon Web Services Load Balancers]
 * xref:how-tos/logformat.adoc[NGINX upstream log format as JSON]

@@ -12,7 +12,7 @@ This component requires at least ArgoCD 1.8. Check the https://github.com/argopr
 
 [CAUTION]
 ====
-This component requires a minimum Kubernetes version of 1.19.
+This component requires a minimum Kubernetes version of 1.22.
 ====
 
 See the xref:references/parameters.adoc[parameters] reference for further details.
