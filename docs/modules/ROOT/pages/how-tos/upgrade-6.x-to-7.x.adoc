@@ -1,0 +1,12 @@
+= Upgrade from 6.x to 7.x
+
+This guide describes the steps to perform an upgrade of the component from version 6.x to 7.x.
+
+== Introduction
+
+This release removes support for Kubernetes v1.20 and v1.21.
+This release adds support for Kubernetes v1.25.0.
+
+== Step-by-step guide
+
+No steps required if the Kubernetes version is equal or higher than v1.22.
