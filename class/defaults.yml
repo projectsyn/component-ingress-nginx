@@ -3,7 +3,7 @@ parameters:
     namespace: syn-ingress-nginx
     release_name: ingress-nginx
     charts:
-      ingress-nginx: '4.3.0'
+      ingress-nginx: '4.5.2'
     chroot: false
     pod_security_admission:
       enabled: false
@@ -14,6 +14,8 @@ parameters:
       controller:
         image:
           chroot: ${ingress_nginx:chroot}
+        # Workaround prevent changing election-id=ingress-controller-leader to election-id=ingress-nginx-leader
+        electionID: ingress-controller-leader
         publishService:
           enabled: true
           pathOverride: "syn-ingress-nginx/ingress-nginx-controller"
