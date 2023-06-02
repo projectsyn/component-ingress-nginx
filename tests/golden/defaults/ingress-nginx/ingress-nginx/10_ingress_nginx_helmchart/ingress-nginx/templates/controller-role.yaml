@@ -62,7 +62,7 @@ rules:
   - apiGroups:
       - coordination.k8s.io
     resourceNames:
-      - ingress-controller-leader
+      - ingress-nginx-leader
     resources:
       - leases
     verbs:

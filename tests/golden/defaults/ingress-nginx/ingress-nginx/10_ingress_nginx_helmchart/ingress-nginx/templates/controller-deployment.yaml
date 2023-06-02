@@ -31,7 +31,7 @@ spec:
         - args:
             - /nginx-ingress-controller
             - --publish-service=syn-ingress-nginx/ingress-nginx-controller
-            - --election-id=ingress-controller-leader
+            - --election-id=ingress-nginx-leader
             - --controller-class=k8s.io/ingress-nginx
             - --ingress-class=nginx
             - --configmap=$(POD_NAMESPACE)/ingress-nginx-controller

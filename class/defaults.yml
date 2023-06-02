@@ -14,8 +14,6 @@ parameters:
       controller:
         image:
           chroot: ${ingress_nginx:chroot}
-        # Workaround prevent changing election-id=ingress-controller-leader to election-id=ingress-nginx-leader
-        electionID: ingress-controller-leader
         publishService:
           enabled: true
           pathOverride: "syn-ingress-nginx/ingress-nginx-controller"
