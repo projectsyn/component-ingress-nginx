@@ -1,4 +1,16 @@
+applications:
+  - prometheus
+
 parameters:
+  kapitan:
+    dependencies:
+      - type: https
+        source: https://raw.githubusercontent.com/projectsyn/component-prometheus/master/lib/prometheus.libsonnet
+        output_path: vendor/lib/prometheus.libsonnet
+
+  prometheus:
+    defaultInstance: monitoring
+
   ingress_nginx:
     kubernetes_version: "1.21"
     chroot: true
