@@ -3,6 +3,7 @@ kind: Namespace
 metadata:
   annotations: {}
   labels:
+    monitoring.syn.tools/monitoring: 'true'
     name: syn-ingress-nginx
     pod-security.kubernetes.io/enforce: privileged
   name: syn-ingress-nginx

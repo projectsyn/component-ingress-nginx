@@ -1,6 +1,7 @@
 // main template for ingress-nginx
 local kap = import 'lib/kapitan.libjsonnet';
 local kube = import 'lib/kube.libjsonnet';
+local prometheus = import 'lib/prometheus.libsonnet';
 local inv = kap.inventory();
 // The hiera parameters for the component
 local params = inv.parameters.ingress_nginx;
@@ -14,7 +15,12 @@ local psaLabel(mode, level) =
       ['pod-security.kubernetes.io/%s' % mode]: level,
     };
 
-local namespace = kube.Namespace(params.namespace) {
+local namespace = (
+  if std.member(inv.applications, 'prometheus') then
+    prometheus.RegisterNamespace(kube.Namespace(params.namespace))
+  else
+    kube.Namespace(params.namespace)
+) + {
   metadata+: {
     labels+:
       psaLabel('audit', params.pod_security_admission.audit) +
