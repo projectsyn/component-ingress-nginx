@@ -1,0 +1,27 @@
+= Upgrade from 7.x to 8.x
+
+This guide describes the steps to perform an upgrade of the component from version 7.x to 8.x.
+
+== Introduction
+
+The helm chart v4.4.0 did introduce a change[https://github.com/kubernetes/ingress-nginx/commit/249780737c862a7cf690058511ee7126ddd0d788] of the `election-id` from `ingress-controller-leader` to `ingress-nginx-leader`.
+Changing the electionID might cause a ingress service interrupt until all NGINX Ingress components have been upgraded.
+During the upgrade the leader might not be choosen correctly.
+
+== Step-by-step guide
+
+. Before upgrading to the latest version, you can optionally add following config to preserve the original electionID naming:
+
++
+[source,yaml]
+----
+parameters:
+  ingress_nginx:
+    helm_values:
+      controller:
+        electionID: ingress-controller-leader
+----
++
+
+[WARNING]
+Not preserving the electionID might cause a downtime on the ingress path!
