@@ -8,6 +8,8 @@ The helm chart v4.4.0 did introduce a change[https://github.com/kubernetes/ingre
 Changing the electionID might cause a ingress service interrupt until all NGINX Ingress components have been upgraded.
 During the upgrade the leader might not be choosen correctly.
 
+With this release the support for Kubernetes 1.23 has been removed.
+
 == Step-by-step guide
 
 . Before upgrading to the latest version, you can optionally add following config to preserve the original electionID naming:
