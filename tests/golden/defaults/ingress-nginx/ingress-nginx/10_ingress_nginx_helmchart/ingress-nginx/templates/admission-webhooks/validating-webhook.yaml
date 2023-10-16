@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx
-    app.kubernetes.io/version: 1.8.2
-    helm.sh/chart: ingress-nginx-4.7.2
+    app.kubernetes.io/version: 1.8.4
+    helm.sh/chart: ingress-nginx-4.7.3
   name: ingress-nginx-admission
 webhooks:
   - admissionReviewVersions:
