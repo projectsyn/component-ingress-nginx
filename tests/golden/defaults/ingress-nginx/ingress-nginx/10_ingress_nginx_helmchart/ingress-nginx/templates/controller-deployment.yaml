@@ -7,8 +7,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx
-    app.kubernetes.io/version: 1.8.4
-    helm.sh/chart: ingress-nginx-4.7.3
+    app.kubernetes.io/version: 1.10.0
+    helm.sh/chart: ingress-nginx-4.10.0
   name: ingress-nginx-controller
   namespace: syn-ingress-nginx
 spec:
@@ -28,8 +28,8 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: ingress-nginx
         app.kubernetes.io/part-of: ingress-nginx
-        app.kubernetes.io/version: 1.8.4
-        helm.sh/chart: ingress-nginx-4.7.3
+        app.kubernetes.io/version: 1.10.0
+        helm.sh/chart: ingress-nginx-4.10.0
     spec:
       containers:
         - args:
@@ -53,7 +53,7 @@ spec:
                   fieldPath: metadata.namespace
             - name: LD_PRELOAD
               value: /usr/local/lib/libmimalloc.so
-          image: registry.k8s.io/ingress-nginx/controller-chroot:v1.8.4@sha256:76100ab4c1b3cdc2697dd26492ba42c6519e99c5df1bc839ac5d6444a2c58d17
+          image: registry.k8s.io/ingress-nginx/controller-chroot:v1.10.0@sha256:7eb46ff733429e0e46892903c7394aff149ac6d284d92b3946f3baf7ff26a096
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -103,10 +103,15 @@ spec:
             capabilities:
               add:
                 - NET_BIND_SERVICE
+                - SYS_ADMIN
                 - SYS_CHROOT
               drop:
                 - ALL
+            readOnlyRootFilesystem: false
+            runAsNonRoot: true
             runAsUser: 101
+            seccompProfile:
+              type: RuntimeDefault
           volumeMounts:
             - mountPath: /usr/local/certificates/
               name: webhook-cert
