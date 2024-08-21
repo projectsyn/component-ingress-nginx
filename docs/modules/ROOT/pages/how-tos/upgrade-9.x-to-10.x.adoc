@@ -1,0 +1,20 @@
+= Upgrade from 9.x to 10.x
+
+This guide describes the steps to perform an upgrade of the component from version 9.x to 10.x.
+
+== Introduction
+
+This release removes support for Kubernetes v1.25
+This release adds support for Kubernetes v1.29.0 and v1.30.0.
+
+== Breaking changes
+
+This version dropped Opentracing and zipkin modules, just Opentelemetry is supported as of this release
+This version dropped support for PodSecurityPolicy
+This version dropped support for GeoIP (legacy). Only GeoIP2 is supported
+
+See the https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.10.0[release notes] for more information.
+
+== Step-by-step guide
+
+No steps required if you don't use zipkin modules, GeoIP (legacy) and the Kubernetes version is equal or higher than v1.26.
