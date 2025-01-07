@@ -10,7 +10,7 @@ parameters:
       - input_paths:
           - ingress-nginx/component/app.jsonnet
         input_type: jsonnet
-        output_path: apps/
+        output_path: .
       - input_paths:
           - ingress-nginx/component/main.jsonnet
         input_type: jsonnet

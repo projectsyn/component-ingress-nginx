@@ -1,5 +1,7 @@
 parameters:
   ingress_nginx:
+    =_metadata:
+      multi_tenant: true
     namespace: syn-ingress-nginx
     release_name: ingress-nginx
     charts:
