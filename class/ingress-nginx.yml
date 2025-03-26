@@ -25,3 +25,9 @@ parameters:
           name: ${ingress_nginx:release_name}
           namespace: ${ingress_nginx:namespace}
           kube_version: ${ingress_nginx:kubernetes_version}
+  commodore:
+    postprocess:
+      filters:
+        - type: jsonnet
+          filter: postprocess/poddisruptionbudget.jsonnet
+          path: ${_instance}/10_ingress_nginx_helmchart/ingress-nginx/templates
