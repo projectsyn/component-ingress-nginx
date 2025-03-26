@@ -7,8 +7,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx
-    app.kubernetes.io/version: 1.10.6
-    helm.sh/chart: ingress-nginx-4.10.6
+    app.kubernetes.io/version: 1.11.5
+    helm.sh/chart: ingress-nginx-4.11.5
   name: ingress-nginx-controller
   namespace: syn-ingress-nginx
 spec:
@@ -28,8 +28,8 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: ingress-nginx
         app.kubernetes.io/part-of: ingress-nginx
-        app.kubernetes.io/version: 1.10.6
-        helm.sh/chart: ingress-nginx-4.10.6
+        app.kubernetes.io/version: 1.11.5
+        helm.sh/chart: ingress-nginx-4.11.5
     spec:
       containers:
         - args:
@@ -53,7 +53,7 @@ spec:
                   fieldPath: metadata.namespace
             - name: LD_PRELOAD
               value: /usr/local/lib/libmimalloc.so
-          image: registry.k8s.io/ingress-nginx/controller-chroot:v1.10.6@sha256:44ceedafc0e04a75521b5d472c1b6b5cc08afb8038b5bbfd79c21d066ccf300e
+          image: registry.k8s.io/ingress-nginx/controller-chroot:v1.11.5@sha256:ec9df3eb6b06563a079ee46045da94cbf750f7dbb16fdbcb9e3265b551ed72ad
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
