@@ -7,7 +7,7 @@
       "name": "ingress-nginx",
       "slug": "ingress-nginx",
       "parameter_key": "ingress_nginx",
-      "test_cases": "defaults",
+      "test_cases": "defaults daemonset",
       "add_lib": "n",
       "add_pp": "n",
       "add_golden": "y",
