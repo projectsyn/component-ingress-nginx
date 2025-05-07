@@ -1,0 +1,12 @@
+= Upgrade from 11.x to 12.x
+
+This guide describes the steps to perform an upgrade of the component from version 11.x to 12.x.
+
+== Introduction
+
+This release removes support for Kubernetes v1.26 and 1.27
+This release adds support for Kubernetes v1.30.0 and v1.31.0
+
+== Step-by-step guide
+
+No steps required if the Kubernetes version is equal or higher than v1.28.
