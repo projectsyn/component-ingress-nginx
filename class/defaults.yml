@@ -5,7 +5,7 @@ parameters:
     namespace: syn-ingress-nginx
     release_name: ingress-nginx
     charts:
-      ingress-nginx: '4.12.7'
+      ingress-nginx: '4.13.3'
     chroot: false
     pod_security_admission:
       enabled: false
