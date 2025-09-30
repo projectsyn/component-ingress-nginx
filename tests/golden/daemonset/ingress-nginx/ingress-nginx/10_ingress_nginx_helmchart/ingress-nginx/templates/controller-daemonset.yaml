@@ -7,8 +7,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx
-    app.kubernetes.io/version: 1.10.6
-    helm.sh/chart: ingress-nginx-4.10.6
+    app.kubernetes.io/version: 1.12.6
+    helm.sh/chart: ingress-nginx-4.12.6
   name: ingress-nginx-controller
   namespace: syn-ingress-nginx
 spec:
@@ -27,8 +27,8 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: ingress-nginx
         app.kubernetes.io/part-of: ingress-nginx
-        app.kubernetes.io/version: 1.10.6
-        helm.sh/chart: ingress-nginx-4.10.6
+        app.kubernetes.io/version: 1.12.6
+        helm.sh/chart: ingress-nginx-4.12.6
     spec:
       affinity:
         nodeAffinity:
@@ -48,6 +48,7 @@ spec:
             - --validating-webhook=:8443
             - --validating-webhook-certificate=/usr/local/certificates/cert
             - --validating-webhook-key=/usr/local/certificates/key
+            - --enable-metrics=true
           env:
             - name: POD_NAME
               valueFrom:
@@ -59,7 +60,7 @@ spec:
                   fieldPath: metadata.namespace
             - name: LD_PRELOAD
               value: /usr/local/lib/libmimalloc.so
-          image: registry.k8s.io/ingress-nginx/controller:v1.10.6@sha256:b6fbd102255edb3ba8e5421feebe14fd3e94cf53d199af9e40687f536152189c
+          image: registry.k8s.io/ingress-nginx/controller:v1.12.6@sha256:c371fbf42b4f23584ce879d99303463131f4f31612f0875482b983354eeca7e6
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -112,6 +113,7 @@ spec:
               drop:
                 - ALL
             readOnlyRootFilesystem: false
+            runAsGroup: 82
             runAsNonRoot: true
             runAsUser: 101
             seccompProfile:
